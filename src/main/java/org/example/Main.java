@@ -1,10 +1,10 @@
+package org.example;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
-        nine();
-
+        fourteen();
 
     }
     public static void printThreeWords(){
@@ -93,5 +93,60 @@ public class Main {
         int inputA = read.nextInt();
         System.out.println(findNine(inputA));
     }
+    public static void ten(){
+        int [] arr = new int[] {1, 1, 0, 0, 1, 0, 1, 1, 0, 0 };
+        for (int i = 0; i < arr.length; i++){
 
+            if (arr[i] == 1){
+                arr[i] = 0;
+            }else{
+                arr[i] = 1;
+            }
+            System.out.print(arr[i] + " ");
+        }
+    }
+    public static void eleven(){
+        int [] arr = new int[100];
+        for (int i = 0; i < arr.length; i++){
+            arr[i] = i + 1;
+            System.out.print(arr[i] + " ");
+        }
+
+    }
+    public static void twelve() {
+        int[] arr = new int[]{1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1};
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < 6) {
+                arr[i] *= 2;
+            }
+            System.out.print(arr[i] + " ");
+        }
+    }
+    public static void thirteen() {
+
+
+        int[][] table = new int[5][5];
+        int size = table.length;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+
+                if ((i == j) || (i + j == size - 1)) {
+                    table[i][j] = 1;
+                }
+                System.out.print(table[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    public static int[] findFourteen(int len, int initialValue){
+        int[] arr = new int[len];
+        Arrays.fill(arr, initialValue);
+        return arr;
+    }
+    public static void fourteen(){
+        Scanner read = new Scanner(System.in);
+        int inputA = read.nextInt();
+        int inputB = read.nextInt();
+        System.out.print(Arrays.toString(findFourteen(inputA, inputB)));
+    }
 }
