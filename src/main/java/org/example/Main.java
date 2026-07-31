@@ -4,8 +4,22 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+//        printThreeWords()
+//        checkSumSign();
+//        printColor();
+//        compareNumbers();
+//        five();
+//        six();
+//        seven();
+//        eight();
+//        nine();
+//        ten();
+//        eleven();
+//        twelve();
+//        thirteen();
+//        fourteen();
+//        сверху все команды по порядку заданий, просто напишите их ниже в мэйне, с 5 задания данные нужно вводить в консоль
         fourteen();
-
     }
     public static void printThreeWords(){
         String s1 = "Orange, " + "\n" + "Banana, " + "\n" + "Apple";
@@ -139,6 +153,7 @@ public class Main {
         }
     }
     public static int[] findFourteen(int len, int initialValue){
+
         int[] arr = new int[len];
         Arrays.fill(arr, initialValue);
         return arr;
