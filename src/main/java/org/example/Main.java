@@ -1,4 +1,5 @@
 package org.example;
+import java.awt.Color;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,10 +18,20 @@ public class Main {
             cat.eat(bowl);
         }
         bowl.addFood(50);
+        bowl.addFood(-100);
+        System.out.println(bowl.getFoodAmount());
         cats[1].eat(bowl);
         cats[2].eat(bowl);
         System.out.println("Всего животных: " + Animal.totalAnimals);
         System.out.println("Всего котов: " + Cat.totalCats);
         System.out.println("Всего собак: " + Dog.totalDogs);
+        System.out.println("-----------------------------------");
+//        ниже код для проверки интерфейса Shape
+        Shape circle = new Circle(5.0, Color.RED, Color.BLACK);
+        Shape rectangle = new Rectangle(4.0, 6.0, Color.BLUE, Color.GREEN);
+        Shape triangle = new Triangle(3.0, 4.0, 5.0, Color.YELLOW, Color.PINK);
+        circle.printInfo("Круг");
+        rectangle.printInfo("Прямоугольник");
+        triangle.printInfo("Треугольник");
     }
 }
