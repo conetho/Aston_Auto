@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Park {
     private String parkName;
-    private List<Attraction> attractions = new ArrayList<>();
+    private List<Attraction> attractionList = new ArrayList<>();
 
     public Park(String parkName) {
         this.parkName = parkName;
@@ -31,14 +31,14 @@ public class Park {
 
     public void addAttraction(String name, String workingHours, int price) {
         Attraction attraction = new Attraction(name, workingHours, price);
-        attractions.add(attraction);
+        attractionList.add(attraction);
     }
 
     public void displayParkInfo() {
         System.out.println("Парк: " + parkName);
         System.out.println("Список аттракционов:");
         System.out.println("-------------------");
-        for (Attraction a : attractions) {
+        for (Attraction a : attractionList) {
             a.displayAttractionInfo();
         }
     }
