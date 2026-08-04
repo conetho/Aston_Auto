@@ -114,7 +114,7 @@ public class Main {
         return (((a % 4 == 0) && (a % 100 != 0)) || ((a % 4 == 0) && (a % 100 == 0) && (a % 400 == 0)));
     }
 
-    public static void nine(){
+    public static void nine() {
         Scanner read = new Scanner(System.in);
         int inputA = read.nextInt();
         System.out.println(findNine(inputA));
