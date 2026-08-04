@@ -1,6 +1,6 @@
-package org.example;
+package lesson_3;
 
-public class Main {
+public class LessonThree {
     public static void main(String[] args) {
         Park centralPark = new Park("Центральный парк");
         Park newPark = new Park("Новый парк");
