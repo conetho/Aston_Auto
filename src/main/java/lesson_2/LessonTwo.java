@@ -1,8 +1,8 @@
-package org.example;
+package lesson_2;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class LessonTwo {
     public static void main(String[] args) {
 //        printThreeWords()
 //        checkSumSign();
