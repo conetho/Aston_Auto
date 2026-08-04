@@ -1,7 +1,7 @@
-package org.example;
+package lesson_4;
 import java.awt.Color;
 
-public class Main {
+public class LessonFour {
     public static void main(String[] args) {
         Dog bobik = new Dog("Бобик", 500, 10);
         bobik.run(150);

@@ -1,4 +1,4 @@
-package org.example;
+package lesson_4;
 
 class Animal {
     protected String name;

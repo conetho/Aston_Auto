@@ -1,4 +1,4 @@
-package org.example;
+package lesson_4;
 import java.awt.Color;
 
 public interface Shape {
