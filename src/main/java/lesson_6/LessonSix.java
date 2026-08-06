@@ -15,10 +15,21 @@ public class LessonSix {
         students.add(new Student("Акира", "Группа Б", 2, Arrays.asList(3, 3, 3, 3)));
 
         UniversityManager.removeBadGradesStudents(students);
-
         UniversityManager.promoteGoodGradesStudents(students);
-
         UniversityManager.printStudents(students, 2);
+
+        PhoneBook phoneBook = new PhoneBook();
+
+        phoneBook.add("Джеки Чан", "89991112233");
+        phoneBook.add("Стив Джобс", "89992223344");
+        phoneBook.add("Джеки Чан", "88005553535");
+        phoneBook.add("Джонсон", "89991234567");
+
+        phoneBook.printPhoneBook();
+
+        System.out.println("Джеки Чан: " + phoneBook.get("Джеки Чан"));
+        System.out.println("Стив Джобс: " + phoneBook.get("Стив Джобс"));
+        System.out.println("Губка Боб: " + phoneBook.get("Губка Боб"));
     }
 }
 
