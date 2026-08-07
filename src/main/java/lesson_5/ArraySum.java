@@ -7,7 +7,6 @@ public class ArraySum {
         if (arr.length != 4) {
             throw new MyArraySizeException("Неверный размер массива: количество строк должно быть 4.");
         }
-
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].length != 4) {
                 throw new MyArraySizeException("Неверный размер массива: в строке " + i + " количество столбцов " +
