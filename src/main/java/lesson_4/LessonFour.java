@@ -1,4 +1,5 @@
 package lesson_4;
+
 import java.awt.Color;
 
 public class LessonFour {
