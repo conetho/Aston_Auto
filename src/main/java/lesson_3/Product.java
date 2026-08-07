@@ -28,7 +28,3 @@ class Product {
         System.out.println("-------------------");
     }
 }
-
-
-
-
