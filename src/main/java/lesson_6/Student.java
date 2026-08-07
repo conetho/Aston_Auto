@@ -37,4 +37,3 @@ public class Student {
         return (double) sum / grades.size();
     }
 }
-

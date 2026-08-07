@@ -1,7 +1,6 @@
 package lesson_6;
 import java.util.Arrays;
 import java.util.HashSet;
-
 import java.util.Set;
 
 public class LessonSix {
@@ -32,4 +31,3 @@ public class LessonSix {
         System.out.println("Губка Боб: " + phoneBook.get("Губка Боб"));
     }
 }
-
