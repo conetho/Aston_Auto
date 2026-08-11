@@ -1,6 +1,6 @@
 package lesson_4;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class LessonFour {
     public static void main(String[] args) {
