@@ -8,7 +8,7 @@ public class DeleteRequestTest extends PostmanEchoTest {
 
     @Test
     void deleteRequest() {
-        String requestBody = "Delete payload";
+        String requestBody = "Delete";
 
         given()
                 .log().all()

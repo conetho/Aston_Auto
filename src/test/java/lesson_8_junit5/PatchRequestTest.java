@@ -8,7 +8,7 @@ public class PatchRequestTest extends PostmanEchoTest {
 
     @Test
     public void testPatchRequest() {
-        String requestBody = "Patch update data";
+        String requestBody = "Patch";
 
         given()
                 .log().all()

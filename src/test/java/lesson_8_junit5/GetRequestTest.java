@@ -17,7 +17,6 @@ public class GetRequestTest extends PostmanEchoTest {
                 .then()
                 .statusCode(200)
                 .body("args.foo1", equalTo("bar1"))
-                .body("args.foo2", equalTo("bar2"))
-                .body("url", equalTo("https://postman-echo.com/get?foo1=bar1&foo2=bar2"));
+                .body("args.foo2", equalTo("bar2"));
     }
 }

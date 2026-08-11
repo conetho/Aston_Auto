@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.equalTo;
 import static io.restassured.RestAssured.given;
 
-public class PostRequestTest extends PostmanEchoTest {
+public class PostRawRequestTest extends PostmanEchoTest {
 
     @Test
-    public void testPostRequest() {
-        String requestBody = "{\"foo1\": \"bar1\"}";
+    public void testPostRawRequest() {
+        String requestBody = "{\"name\": \"John Doe\", \"age\": 30}";
         given()
                 .log().all()
                 .contentType("application/json")
@@ -17,7 +17,8 @@ public class PostRequestTest extends PostmanEchoTest {
                 .post("/post")
                 .then()
                 .statusCode(200)
-                .body("json.foo1", equalTo("bar1"))
-                .body("data.foo1", equalTo("bar1"));
+                .body("json.name", equalTo("John Doe"))
+                .body("json.age", equalTo(30))
+                .body("data.name", equalTo("John Doe"));
     }
 }
