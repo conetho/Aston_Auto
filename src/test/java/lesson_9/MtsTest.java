@@ -18,10 +18,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class MtsTest {
+public class
+MtsTest {
 
     WebDriver driver;
     WebDriverWait wait;
@@ -46,7 +46,6 @@ public class MtsTest {
 
     @Test
     void smokeTest() {
-        driver.get("https://example.com");
         System.out.println("Заголовок страницы: " + driver.getTitle());
     }
 }
