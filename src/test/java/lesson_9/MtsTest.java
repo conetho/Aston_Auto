@@ -83,9 +83,7 @@ public class MtsTest {
         assertTrue(submitButtonElement.isEnabled(), "Кнопка 'Продолжить' не активна");
         submitButtonElement.click();
 
-        // Проверка перехода к оплате (появление фрейма Белгазпромбанка)
         WebElement appPaymentContainer = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='payment-widget-app']")));
         assertTrue(appPaymentContainer.isDisplayed(), "Фрейм оплаты не появился после нажатия кнопки 'Продолжить'");
     }
-
 }
