@@ -87,4 +87,5 @@ public class MtsTest {
         WebElement appPaymentContainer = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='payment-widget-app']")));
         assertTrue(appPaymentContainer.isDisplayed(), "Фрейм оплаты не появился после нажатия кнопки 'Продолжить'");
     }
+
 }
