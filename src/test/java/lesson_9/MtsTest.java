@@ -1,5 +1,6 @@
 package lesson_9;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -9,15 +10,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-
 import java.time.Duration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MtsTest {
-
     WebDriver driver;
     WebDriverWait wait;
     private final By paymentLogos = By.xpath("//div[contains(@class,'pay__partners')]//img");
@@ -31,7 +29,6 @@ public class MtsTest {
     @BeforeEach
     void setup() {
         FirefoxOptions options = new FirefoxOptions();
-//      options.addArguments("--height=1080");
         driver = new FirefoxDriver(options);
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -83,7 +80,14 @@ public class MtsTest {
         assertTrue(submitButtonElement.isEnabled(), "Кнопка 'Продолжить' не активна");
         submitButtonElement.click();
 
-        WebElement appPaymentContainer = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='payment-widget-app']")));
+        WebElement appPaymentContainer = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@class='payment-widget-iframe']")));
         assertTrue(appPaymentContainer.isDisplayed(), "Фрейм оплаты не появился после нажатия кнопки 'Продолжить'");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
