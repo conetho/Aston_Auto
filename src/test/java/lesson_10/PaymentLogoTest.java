@@ -1,11 +1,5 @@
 package lesson_10;
 
-import lesson_10_Main.MainPage;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

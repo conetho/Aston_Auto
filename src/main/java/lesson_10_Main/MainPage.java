@@ -1,20 +1,13 @@
 package lesson_10_Main;
 
-import lesson_10_Base.BasePage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
-public class MainPage extends BasePage {
+public class MainPage {
     private final By paymentLogos = By.xpath("//div[contains(@class,'pay__partners')]//img");
     private final By blockTitle = By.xpath("//div[@class='pay__wrapper']//h2");
     private final By moreInfoLink = By.xpath("//div[contains(@class, 'pay__wrapper')]//a[contains(text(), 'Подробнее о сервисе')]");
@@ -24,9 +17,7 @@ public class MainPage extends BasePage {
     private final By emailInput = By.id("connection-email");
     private final By submitButton = By.xpath("//button[@class='button button__default ']");
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-    }
+
 
     public void open() {
         driver.get("https://mts.by");
