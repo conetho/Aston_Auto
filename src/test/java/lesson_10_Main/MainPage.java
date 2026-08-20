@@ -28,8 +28,8 @@ public class MainPage extends BasePage {
         super(driver);
     }
 
-    public void open(String url) {
-        driver.get(url);
+    public void open() {
+        driver.get("https://mts.by");
         try {
             WebElement cookieClose = wait.until(ExpectedConditions.elementToBeClickable(By.id("cookie-agree")));
             cookieClose.click();
@@ -53,16 +53,16 @@ public class MainPage extends BasePage {
         return driver.findElement(moreInfoLink).getAttribute("href");
     }
 
-    public void selectOption(String optionName) {
-        By locator = switch (optionName) {
-            case "Услуги связи" -> optionConnection;
-            case "Домашний интернет" -> optionInternet;
-            case "Рассрочка" -> optionInstallment;
-            case "Задолженность" -> optionDebt;
-            default -> throw new IllegalArgumentException("Неизвестная опция")
-        };
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
-    }
+//    public void selectOption(String optionName) {
+//        By locator = switch (optionName) {
+//            case "Услуги связи" -> optionConnection;
+//            case "Домашний интернет" -> optionInternet;
+//            case "Рассрочка" -> optionInstallment;
+//            case "Задолженность" -> optionDebt;
+//            default -> throw new IllegalArgumentException("Неизвестная опция");
+//        };
+//        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+//    }
 
     public String getPlaceholder(String fieldType) {
         By locator = switch (fieldType) {
@@ -104,23 +104,5 @@ public class MainPage extends BasePage {
                 ExpectedConditions.urlContains("checkout.bepaid.by")
         ));
         return true;
-    }
-}
-
-    @BeforeEach
-    void setup() {
-        FirefoxOptions options = new FirefoxOptions();
-        driver = new FirefoxDriver(options);
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        driver.get("https://www.mts.by/");
-
-    }
-
-    @AfterEach
-    void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
 }
