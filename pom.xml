@@ -71,6 +71,14 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
         </dependency>
+        <!-- Гарантирует скачивание jar в локальный репозиторий до старта surefire,
+             который подключает его как -javaagent -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
