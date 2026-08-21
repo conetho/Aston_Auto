@@ -12,7 +12,29 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <allure.version>2.29.1</allure.version>
+        <aspectj.version>1.9.24</aspectj.version>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Выравнивает версии всех junit-артефактов (jupiter + platform),
+                 иначе allure-junit5 тянет старый junit-platform и тесты не запускаются -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>6.1.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-bom</artifactId>
+                <version>${allure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -38,6 +60,17 @@
             <version>4.46.0</version>
             <scope>compile</scope>
         </dependency>
+        <!-- Интеграция Allure с JUnit 5: слушатель подхватывается автоматически -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Аннотация @Step для Page Object в src/main -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -45,6 +78,30 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.2</version>
+                <configuration>
+                    <!-- AspectJ-агент нужен Allure, чтобы @Step попадали в отчёт -->
+                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
+                    <systemPropertyVariables>
+                        <!-- Складываем результаты в target, где их ждёт allure-maven -->
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.15.2</version>
+                <configuration>
+                    <!-- Версия Allure CLI (генератор отчёта), не совпадает с версией java-библиотеки -->
+                    <reportVersion>2.34.1</reportVersion>
+                </configuration>
             </plugin>
         </plugins>
     </build>

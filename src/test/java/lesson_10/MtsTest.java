@@ -1,43 +1,51 @@
 package lesson_10;
 
-import lesson_10_Main.MainPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import lesson_10_Base.BaseTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MtsTest {
-    private WebDriver driver;
-    private MainPage mainPage;
-    private final String BASE_URL = "https://mts.by";
-
-    @BeforeEach
-    void setup() {
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
-        mainPage = new MainPage(driver);
-        mainPage.open();
-    }
+/**
+ * Тесты блока «Онлайн пополнение без комиссии» на mts.by.
+ * Браузер открывает и закрывает BaseTest, действия на странице делает MainPage,
+ * здесь остаются только проверки (assert).
+ *
+ * Как запустить тесты:
+ *   mvn clean test
+ * Как открыть Allure-отчёт (соберёт и откроет в браузере):
+ *   mvn allure:serve
+ * Требуется JDK 21 (JAVA_HOME должен указывать на него) и установленный Firefox.
+ */
+public class MtsTest extends BaseTest {
 
     @Test
+    @DisplayName("Заголовок блока «Онлайн пополнение без комиссии» отображается")
     public void testBlockTitle() {
         String expectedTitle = "ОНЛАЙН ПОПОЛНЕНИЕ\nБЕЗ КОМИССИИ";
         assertTrue(mainPage.getBlockTitle().contains(expectedTitle), "Название блока не отображается");
     }
 
     @Test
+    @DisplayName("В блоке оплаты присутствуют все логотипы платёжных систем")
     public void testPaymentLogo() {
         assertEquals(5, mainPage.getLogos(), "Присутствуют не все логотипы");
     }
 
-    @AfterEach
-    void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+    @Test
+    @DisplayName("Ссылка «Подробнее о сервисе» ведёт на страницу с информацией")
+    public void testMoreInfoLink() {
+        mainPage.clickMoreInfoLink();
+        assertEquals("Информация о безопасности Интернет-платежей", mainPage.getMoreInfoTitle(),
+                "Неверный заголовок страницы");
+    }
+
+    @Test
+    @DisplayName("После заполнения формы и нажатия «Продолжить» открывается окно оплаты")
+    public void testConnectionForm() {
+        mainPage.fillConnectionForm("297777777", "10", "test@test.by");
+        mainPage.clickContinue();
+        assertTrue(mainPage.isTransitionToPayment(), "Окно оплаты не появилось");
     }
 }
