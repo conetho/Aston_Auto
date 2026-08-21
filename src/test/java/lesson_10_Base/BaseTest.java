@@ -1,17 +1,31 @@
 package lesson_10_Base;
 
+import lesson_10_Main.MainPage;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
+/**
+ * Общая подготовка для всех тестов:
+ * перед каждым тестом — открыть браузер и страницу, после — закрыть браузер.
+ */
 public abstract class BaseTest {
-    public WebDriver driver;
-    public WebDriverWait wait;
+    protected WebDriver driver;
+    protected MainPage mainPage;
 
+    @BeforeEach
+    void setup() {
+        driver = new FirefoxDriver();
+        driver.manage().window().maximize();
+        mainPage = new MainPage(driver);
+        mainPage.open();
+    }
 
-
-    public BaseTest(WebDriver driver) {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    @AfterEach
+    void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
