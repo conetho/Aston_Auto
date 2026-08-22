@@ -28,6 +28,12 @@ public class MainPage {
     private final By sumInput = By.id("connection-sum");
     private final By emailInput = By.id("connection-email");
     private final By submitButton = By.xpath("//button[@class='button button__default ']");
+    private final By optionConnection = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Услуги связи')]");
+    private final By optionInternet = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Домашний интернет')]");
+    private final By optionInstallment = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Рассрочка')]");
+    private final By optionArrears = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Задолженность')]");
+    private final By selectOptionsHeaderButton = By.xpath("//button[@class='select__header']");
+
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -64,8 +70,43 @@ public class MainPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(moreInfoTitle)).getText().trim();
     }
 
+    @Step("Выбрать тип услуги")
+    public void selectOption(String optionName) {
+        By locator = switch (optionName) {
+            case "Услуги связи" -> optionConnection;
+            case "Домашний интернет" -> optionInternet;
+            case "Рассрочка" -> optionInstallment;
+            case "Задолженность" -> optionArrears;
+            default -> throw new IllegalArgumentException("Неизвестная опция");
+        };
+        wait.until(ExpectedConditions.elementToBeClickable(selectOptionsHeaderButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+    }
+
+    @Step("Получить плэйсхолдер по локатору")
+    public String getPlaceholder(String fieldType) {
+        By locator = switch (fieldType) {
+            case "phone" -> By.id("connection-phone");
+            case "sum" -> By.id("connection-sum");
+            case "email" -> By.id("connection-email");
+            case "internet-phone" -> By.id("internet-phone");
+            case "internet-sum" -> By.id("internet-sum");
+            case "internet-email" -> By.id("internet-email");
+            case "score-instalment" -> By.id("score-instalment");
+            case "instalment-sum" -> By.id("instalment-sum");
+            case "instalment-email" -> By.id("instalment-email");
+            case "score-arrears" -> By.id("score-arrears");
+            case "arrears-sum" -> By.id("arrears-sum");
+            case "arrears-email" -> By.id("arrears-email");
+            default -> throw new IllegalArgumentException("Неизвестное поле");
+        };
+        return driver.findElement(locator).getAttribute("placeholder");
+    }
+
     @Step("Заполнить форму «Услуги связи»: телефон={phone}, сумма={sum}, email={email}")
     public void fillConnectionForm(String phone, String sum, String email) {
+        selectOption("Услуги связи");
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(phoneInput)).clear();
         driver.findElement(phoneInput).sendKeys(phone);
 

@@ -42,6 +42,39 @@ public class MtsTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("Плэйсхолдеры всех опций отображаются")
+    public void testOptionFields() {
+        mainPage.selectOption("Домашний интернет");
+        assertEquals("Номер абонента", mainPage.getPlaceholder("internet-phone"),
+                "Неверный плэйсхолдер поля номера абонента");
+        assertEquals("Сумма", mainPage.getPlaceholder("internet-sum"),
+                "Неверный плэйсхолдер поля суммы");
+        assertEquals("E-mail для отправки чека", mainPage.getPlaceholder("internet-email"),
+                "Неверный плэйсхолдер поля email");
+        mainPage.selectOption("Рассрочка");
+        assertEquals("Номер счета на 44", mainPage.getPlaceholder("score-instalment"),
+                "Неверный плэйсхолдер поля номера счета");
+        assertEquals("Сумма", mainPage.getPlaceholder("instalment-sum"),
+                "Неверный плэйсхолдер поля суммы");
+        assertEquals("E-mail для отправки чека", mainPage.getPlaceholder("instalment-email"),
+                "Неверный плэйсхолдер поля email");
+        mainPage.selectOption("Задолженность");
+        assertEquals("Номер счета на 2073", mainPage.getPlaceholder("score-arrears"),
+                "Неверный плэйсхолдер поля номера счета");
+        assertEquals("Сумма", mainPage.getPlaceholder("arrears-sum"),
+                "Неверный плэйсхолдер поля суммы");
+        assertEquals("E-mail для отправки чека", mainPage.getPlaceholder("arrears-email"),
+                "Неверный плэйсхолдер поля email");
+        mainPage.selectOption("Услуги связи");
+        assertEquals("Номер телефона", mainPage.getPlaceholder("phone"),
+                "Неверный плэйсхолдер поля номера телефона");
+        assertEquals("Сумма", mainPage.getPlaceholder("sum"),
+                "Неверный плэйсхолдер поля суммы");
+        assertEquals("E-mail для отправки чека", mainPage.getPlaceholder("email"),
+                "Неверный плэйсхолдер поля email");
+    }
+
+    @Test
     @DisplayName("После заполнения формы и нажатия «Продолжить» открывается окно оплаты")
     public void testConnectionForm() {
         mainPage.fillConnectionForm("297777777", "10", "test@test.by");
