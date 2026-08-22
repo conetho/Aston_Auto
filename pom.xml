@@ -87,7 +87,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.2</version>
                 <configuration>
-                    <!-- AspectJ-агент нужен Allure, чтобы @Step попадали в отчёт -->
+                    <!-- AspectJ-агент нужен Allure,чтобы @Step попадали в отчёт -->
                     <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
                     <systemPropertyVariables>
                         <!-- Складываем результаты в target, где их ждёт allure-maven -->
