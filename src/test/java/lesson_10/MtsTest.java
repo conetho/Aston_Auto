@@ -77,8 +77,24 @@ public class MtsTest extends BaseTest {
     @Test
     @DisplayName("После заполнения формы и нажатия «Продолжить» открывается окно оплаты")
     public void testConnectionForm() {
-        mainPage.fillConnectionForm("297777777", "10", "test@test.by");
+        String phoneNumber = "297777777";
+        String sum = "10.00 BYN";
+        mainPage.fillConnectionForm(phoneNumber, sum, "test@test.by");
         mainPage.clickContinue();
         assertTrue(mainPage.isTransitionToPayment(), "Окно оплаты не появилось");
+
+        String cardNumberField = "Номер карты";
+        String cardExpirationField = "Срок действия";
+        String cardCvcField = "CVC";
+        String cardNameField = "Имя и фамилия на карте";
+        assertTrue(mainPage.getModalPhoneText().contains(phoneNumber), "Лэйбл номера телефона не отображается");
+        assertTrue(mainPage.getModalSumText().contains(sum), "Название блока не отображается");
+        assertTrue(mainPage.getModalPayButtonText().contains(sum), "Название блока не отображается");
+        assertTrue(mainPage.getModalSmallSumText().contains(sum), "Название блока не отображается");
+        assertTrue(mainPage.getCardNumberInputLabel().contains(cardNumberField), "Название блока не отображается");
+        assertTrue(mainPage.getCardExpirationInputLabel().contains(cardExpirationField), "Название блока не отображается");
+        assertTrue(mainPage.getCardCvcInputLabel().contains(cardCvcField), "Название блока не отображается");
+        assertTrue(mainPage.getCardNameInputLabel().contains(cardNameField), "Название блока не отображается");
+        assertEquals(5, mainPage.getModalLogos(), "Присутствуют не все логотипы");
     }
 }

@@ -33,7 +33,15 @@ public class MainPage {
     private final By optionInstallment = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Рассрочка')]");
     private final By optionArrears = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Задолженность')]");
     private final By selectOptionsHeaderButton = By.xpath("//button[@class='select__header']");
-
+    private final By modalPhoneText = By.xpath("//div[@class = 'pay-description__text']//span[contains(text(), '297777777')]");
+    private final By modalSumText = By.xpath("//div[@class = 'pay-description__cost']//span[contains(text(), '10.00 BYN')]");
+    private final By modalPayButtonText = By.xpath("//button[@type = 'submit']//span[contains(text(), '10.00 BYN')]");
+    private final By modalSmallSumText = By.xpath("//div[@class = 'card-page__agreement ng-star-inserted']//span[contains(text(), '10.00 BYN')]");
+    private final By cardNumberInputLabel = By.xpath("//label[contains(text(), 'Номер карты')]");
+    private final By cardExpirationInputLabel = By.xpath("//label[contains(text(), 'Срок действия')]");
+    private final By cardCvcInputLabel = By.xpath("//label[contains(text(), 'CVC')]");
+    private final By cardNameInputLabel = By.xpath("//label[contains(text(), 'Имя и фамилия на карте')]");
+    private final By modalPaymentLogos = By.xpath("//div[contains(@class, 'cards-brands__container')]//img");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -129,5 +137,51 @@ public class MainPage {
                 ExpectedConditions.urlContains("checkout.bepaid.by")
         ));
         return true;
+    }
+
+    @Step("Посчитать логотипы платёжных систем в платёжном виджете")
+    public int getModalLogos() {
+        List<WebElement> modalLogos = driver.findElements(modalPaymentLogos);
+        return modalLogos.size();
+    }
+
+    @Step("Получить номер телефона")
+    public String getModalPhoneText() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(modalPhoneText)).getText().trim();
+    }
+
+    @Step("Получить сумму")
+    public String getModalSumText() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(modalSumText)).getText().trim();
+    }
+
+    @Step("Получить сумму на кнопке оплаты")
+    public String getModalPayButtonText() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(modalPayButtonText)).getText().trim();
+    }
+
+    @Step("Получить сумму в маленьком тексте")
+    public String getModalSmallSumText() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(modalSmallSumText)).getText().trim();
+    }
+
+    @Step("Получить лэйбл CVC карты")
+    public String getCardCvcInputLabel() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(cardCvcInputLabel)).getText().trim();
+    }
+
+    @Step("Получить лэйбл срока действия карты")
+    public String getCardExpirationInputLabel() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(cardExpirationInputLabel)).getText().trim();
+    }
+
+    @Step("Получить лэйбл имени на карте")
+    public String getCardNameInputLabel() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(cardNameInputLabel)).getText().trim();
+    }
+
+    @Step("Получить лэйбл номера карты")
+    public String getCardNumberInputLabel() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(cardNumberInputLabel)).getText().trim();
     }
 }
