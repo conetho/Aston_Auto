@@ -44,28 +44,24 @@ public class MtsTest extends BaseTest {
     @Test
     @DisplayName("Плэйсхолдеры всех опций отображаются")
     public void testOptionFields() {
-        mainPage.selectOption("Домашний интернет");
         assertEquals("Номер абонента", mainPage.getPlaceholder("internet-phone"),
                 "Неверный плэйсхолдер поля номера абонента");
         assertEquals("Сумма", mainPage.getPlaceholder("internet-sum"),
                 "Неверный плэйсхолдер поля суммы");
         assertEquals("E-mail для отправки чека", mainPage.getPlaceholder("internet-email"),
                 "Неверный плэйсхолдер поля email");
-        mainPage.selectOption("Рассрочка");
         assertEquals("Номер счета на 44", mainPage.getPlaceholder("score-instalment"),
                 "Неверный плэйсхолдер поля номера счета");
         assertEquals("Сумма", mainPage.getPlaceholder("instalment-sum"),
                 "Неверный плэйсхолдер поля суммы");
         assertEquals("E-mail для отправки чека", mainPage.getPlaceholder("instalment-email"),
                 "Неверный плэйсхолдер поля email");
-        mainPage.selectOption("Задолженность");
         assertEquals("Номер счета на 2073", mainPage.getPlaceholder("score-arrears"),
                 "Неверный плэйсхолдер поля номера счета");
         assertEquals("Сумма", mainPage.getPlaceholder("arrears-sum"),
                 "Неверный плэйсхолдер поля суммы");
         assertEquals("E-mail для отправки чека", mainPage.getPlaceholder("arrears-email"),
                 "Неверный плэйсхолдер поля email");
-        mainPage.selectOption("Услуги связи");
         assertEquals("Номер телефона", mainPage.getPlaceholder("phone"),
                 "Неверный плэйсхолдер поля номера телефона");
         assertEquals("Сумма", mainPage.getPlaceholder("sum"),
@@ -79,14 +75,13 @@ public class MtsTest extends BaseTest {
     public void testConnectionForm() {
         String phoneNumber = "297777777";
         String sum = "10.00 BYN";
-        mainPage.fillConnectionForm(phoneNumber, sum, "test@test.by");
-        mainPage.clickContinue();
-        assertTrue(mainPage.isTransitionToPayment(), "Окно оплаты не появилось");
-
         String cardNumberField = "Номер карты";
         String cardExpirationField = "Срок действия";
         String cardCvcField = "CVC";
         String cardNameField = "Имя и фамилия на карте";
+        mainPage.fillConnectionForm(phoneNumber, sum, "test@test.by");
+        mainPage.clickContinue();
+        assertTrue(mainPage.isTransitionToPayment(), "Окно оплаты не появилось");
         assertTrue(mainPage.getModalPhoneText().contains(phoneNumber), "Лэйбл номера телефона не отображается");
         assertTrue(mainPage.getModalSumText().contains(sum), "Название блока не отображается");
         assertTrue(mainPage.getModalPayButtonText().contains(sum), "Название блока не отображается");

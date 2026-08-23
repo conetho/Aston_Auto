@@ -18,7 +18,6 @@ import java.util.List;
 public class MainPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
-
     // Локаторы элементов блока «Онлайн пополнение»
     private final By paymentLogos = By.xpath("//div[contains(@class,'pay__partners')]//img");
     private final By blockTitle = By.xpath("//div[@class='pay__wrapper']//h2");
@@ -28,11 +27,6 @@ public class MainPage {
     private final By sumInput = By.id("connection-sum");
     private final By emailInput = By.id("connection-email");
     private final By submitButton = By.xpath("//button[@class='button button__default ']");
-    private final By optionConnection = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Услуги связи')]");
-    private final By optionInternet = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Домашний интернет')]");
-    private final By optionInstallment = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Рассрочка')]");
-    private final By optionArrears = By.xpath("//ul[@class='select__list']//p[contains(text(), 'Задолженность')]");
-    private final By selectOptionsHeaderButton = By.xpath("//button[@class='select__header']");
     private final By modalPhoneText = By.xpath("//div[@class = 'pay-description__text']//span[contains(text(), '297777777')]");
     private final By modalSumText = By.xpath("//div[@class = 'pay-description__cost']//span[contains(text(), '10.00 BYN')]");
     private final By modalPayButtonText = By.xpath("//button[@type = 'submit']//span[contains(text(), '10.00 BYN')]");
@@ -78,19 +72,6 @@ public class MainPage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(moreInfoTitle)).getText().trim();
     }
 
-    @Step("Выбрать тип услуги")
-    public void selectOption(String optionName) {
-        By locator = switch (optionName) {
-            case "Услуги связи" -> optionConnection;
-            case "Домашний интернет" -> optionInternet;
-            case "Рассрочка" -> optionInstallment;
-            case "Задолженность" -> optionArrears;
-            default -> throw new IllegalArgumentException("Неизвестная опция");
-        };
-        wait.until(ExpectedConditions.elementToBeClickable(selectOptionsHeaderButton)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
-    }
-
     @Step("Получить плэйсхолдер по локатору")
     public String getPlaceholder(String fieldType) {
         By locator = switch (fieldType) {
@@ -113,8 +94,6 @@ public class MainPage {
 
     @Step("Заполнить форму «Услуги связи»: телефон={phone}, сумма={sum}, email={email}")
     public void fillConnectionForm(String phone, String sum, String email) {
-        selectOption("Услуги связи");
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(phoneInput)).clear();
         driver.findElement(phoneInput).sendKeys(phone);
 
