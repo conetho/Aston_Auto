@@ -71,7 +71,8 @@ public class MtsTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("После заполнения формы и нажатия «Продолжить» открывается окно оплаты")
+    @DisplayName("После заполнения формы и нажатия «Продолжить» открывается окно оплаты. Введенные данные и " +
+            "плэйсхолдеры отображаются")
     public void testConnectionForm() {
         String phoneNumber = "297777777";
         String sum = "10.00 BYN";
@@ -82,14 +83,16 @@ public class MtsTest extends BaseTest {
         mainPage.fillConnectionForm(phoneNumber, sum, "test@test.by");
         mainPage.clickContinue();
         assertTrue(mainPage.isTransitionToPayment(), "Окно оплаты не появилось");
-        assertTrue(mainPage.getModalPhoneText().contains(phoneNumber), "Лэйбл номера телефона не отображается");
-        assertTrue(mainPage.getModalSumText().contains(sum), "Название блока не отображается");
-        assertTrue(mainPage.getModalPayButtonText().contains(sum), "Название блока не отображается");
-        assertTrue(mainPage.getModalSmallSumText().contains(sum), "Название блока не отображается");
-        assertTrue(mainPage.getCardNumberInputLabel().contains(cardNumberField), "Название блока не отображается");
-        assertTrue(mainPage.getCardExpirationInputLabel().contains(cardExpirationField), "Название блока не отображается");
-        assertTrue(mainPage.getCardCvcInputLabel().contains(cardCvcField), "Название блока не отображается");
-        assertTrue(mainPage.getCardNameInputLabel().contains(cardNameField), "Название блока не отображается");
+        assertTrue(mainPage.getModalPhoneText().contains(phoneNumber), "Указанный номер телефона не отображается");
+        assertTrue(mainPage.getModalSumText().contains(sum), "Указанная сумма не отображается");
+        assertTrue(mainPage.getModalPayButtonText().contains(sum), "Указанная сумма на кнопке не отображается");
+        assertTrue(mainPage.getModalSmallSumText().contains(sum), "Указанная сумма в маленьком тексте не отображается");
+        assertTrue(mainPage.getCardNumberInputLabel().contains(cardNumberField),
+                "Плэйсхолдер поля номера карты не отображается");
+        assertTrue(mainPage.getCardExpirationInputLabel().contains(cardExpirationField),
+                "Плэйсхолдер срока действия карты не отображается");
+        assertTrue(mainPage.getCardCvcInputLabel().contains(cardCvcField), "Плэйсхолдер CVC поля не отображается");
+        assertTrue(mainPage.getCardNameInputLabel().contains(cardNameField), "Плэйсхолдер поля имени не отображается");
         assertEquals(5, mainPage.getModalLogos(), "Присутствуют не все логотипы");
     }
 }

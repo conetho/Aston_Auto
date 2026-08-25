@@ -21,16 +21,20 @@ public class MainPage {
     // Локаторы элементов блока «Онлайн пополнение»
     private final By paymentLogos = By.xpath("//div[contains(@class,'pay__partners')]//img");
     private final By blockTitle = By.xpath("//div[@class='pay__wrapper']//h2");
-    private final By moreInfoLink = By.xpath("//div[contains(@class, 'pay__wrapper')]//a[contains(text(), 'Подробнее о сервисе')]");
+    private final By moreInfoLink = By.xpath("//div[contains(@class, 'pay__wrapper')]//a[contains(text(), " +
+            "'Подробнее о сервисе')]");
     private final By moreInfoTitle = By.xpath("//div[@class='container-fluid']//h3[2]");
     private final By phoneInput = By.id("connection-phone");
     private final By sumInput = By.id("connection-sum");
     private final By emailInput = By.id("connection-email");
     private final By submitButton = By.xpath("//button[@class='button button__default ']");
-    private final By modalPhoneText = By.xpath("//div[@class = 'pay-description__text']//span[contains(text(), '297777777')]");
-    private final By modalSumText = By.xpath("//div[@class = 'pay-description__cost']//span[contains(text(), '10.00 BYN')]");
+    private final By modalPhoneText = By.xpath("//div[@class = 'pay-description__text']//span[contains(text(), " +
+            "'297777777')]");
+    private final By modalSumText = By.xpath("//div[@class = 'pay-description__cost']//span[contains(text(), " +
+            "'10.00 BYN')]");
     private final By modalPayButtonText = By.xpath("//button[@type = 'submit']//span[contains(text(), '10.00 BYN')]");
-    private final By modalSmallSumText = By.xpath("//div[@class = 'card-page__agreement ng-star-inserted']//span[contains(text(), '10.00 BYN')]");
+    private final By modalSmallSumText = By.xpath("//div[@class = 'card-page__agreement ng-star-inserted']" +
+            "//span[contains(text(), '10.00 BYN')]");
     private final By cardNumberInputLabel = By.xpath("//label[contains(text(), 'Номер карты')]");
     private final By cardExpirationInputLabel = By.xpath("//label[contains(text(), 'Срок действия')]");
     private final By cardCvcInputLabel = By.xpath("//label[contains(text(), 'CVC')]");
