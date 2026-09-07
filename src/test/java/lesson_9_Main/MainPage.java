@@ -18,7 +18,7 @@ public class MainPage {
     public final By paymentLogos = By.xpath("//div[contains(@class,'pay__partners')]//img");
     public final By blockTitle = By.xpath("//div[@class='pay__wrapper']//h2");
     public final By moreInfoLink = By.xpath("//div[contains(@class, 'pay__wrapper')]//a[contains(text(), 'Подробнее о сервисе')]");
-    public final By moreInfoText = By.xpath("//div[@class='container-fluid']//h3[2]");
+    public final By moreInfoText = By.xpath("//div[@class='container-fluid']//h3[contains(text(), 'Информация о безопасности Интернет-платежей')]");
     public final By phoneInput = By.id("connection-phone");
     public final By sumInput = By.id("connection-sum");
     public final By submitButton = By.xpath("//button[@class='button button__default ']");
