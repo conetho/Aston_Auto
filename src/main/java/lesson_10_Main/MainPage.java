@@ -23,7 +23,7 @@ public class MainPage {
     private final By blockTitle = By.xpath("//div[@class='pay__wrapper']//h2");
     private final By moreInfoLink = By.xpath("//div[contains(@class, 'pay__wrapper')]//a[contains(text(), " +
             "'Подробнее о сервисе')]");
-    private final By moreInfoTitle = By.xpath("//div[@class='container-fluid']//h3[2]");
+    private final By moreInfoTitle = By.xpath("//div[@class='container-fluid']//h3[contains(text(), 'Информация о безопасности Интернет-платежей')]");
     private final By phoneInput = By.id("connection-phone");
     private final By sumInput = By.id("connection-sum");
     private final By emailInput = By.id("connection-email");
